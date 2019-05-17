@@ -1,21 +1,19 @@
-const Command = require('command');
+String.prototype.clr = function (hexColor) { return `<font color='#${hexColor}'>${this}</font>` };
 
-module.exports = function PlayerKills(dispatch) {
-    const command = Command(dispatch);
+module.exports = function PlayerKills(mod) {
+
+    let enabled = true,
+    message = '';
     
-    let enabled,
-    message;
-    
-    dispatch.hook('S_LOGIN', 10, (event) => {
+    mod.hook('S_LOGIN', 13, (event) => {
         enabled = true;
-        message = '(player-kills) ' + event.name + ' has ' + event.playerKills + ' PKs';
+        message = 'PK Kill Count: '.clr("FDD017") + event.pkKillCount.toString().clr("00FFFF");
     });
     
-    /* Not ideal to use S_SPAWN_ME but needed something that came after S_LOGIN so proxy (command) has time to establish itself. */
-    dispatch.hook('S_SPAWN_ME', 'raw', () => {
+    mod.hook('S_SPAWN_ME', 'raw', () => {
         if (enabled) {
             enabled = false;
-            command.message(message);
+            mod.command.message(message);
         }
     });
     

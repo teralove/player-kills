@@ -1,0 +1,12 @@
+{
+    "disableAutoUpdate": false,
+    "name": "player-kills",
+    "author": "teralove",
+    "description": "Display your character's PK count.",
+    "version": "5/17/2019",
+    "options": {
+        "niceName": "Player Kills",
+    },
+    "servers": ["https://raw.githubusercontent.com/teralove/player-kills/master/"],
+    "supportUrl": "https://github.com/teralove/player-kills/issues"
+}
